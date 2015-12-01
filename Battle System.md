@@ -19,6 +19,6 @@ Stats:
 - Fortification (FOR) – Your physical integrity. More of this means being able to take more hits. 
 - Creed (CRE) – Your mental integrity. More of this means… well… more… things.
 
-<br>
+
 - Wealth (WEA) – The legal tender that can be used in this world. Note that having more of this doesn’t always spell good things.
 
