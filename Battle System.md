@@ -18,6 +18,6 @@ Stats:
 - Robustness (ROB) – Your physical strength. More of this means harder hits and more environmental options. 
 - Fortification (FOR) – Your physical integrity. More of this means being able to take more hits. 
 - Creed (CRE) – Your mental integrity. More of this means… well… more… things.
-- 
+
 - Wealth (WEA) – The legal tender that can be used in this world. Note that having more of this doesn’t always spell good things.
 
