@@ -27,6 +27,8 @@ public class ProjectWolf {
         fortification = 1;
         creed = 1;
         wealth = 0;
+        mapX = 0;
+        mapY = 0;
         name = "Saul";
     }
     
@@ -36,17 +38,36 @@ public class ProjectWolf {
         fortification = 1;
         creed = 1;
         wealth = 0;
+        mapX = 0;
+        mapY = 0;
         name = given;
     }
     public static void main(String[] args) throws IOException {
-        // TODO code application logic here
+        System.out.println("Well, hello there. You seem to be a bit confused. Stay calm, though, this is the beginning of" +
+                " your legend, your legacy, the journey of your life. All I need is your name. If you don't provide one, " +
+                "I will give you one myself.");
+        System.out.println("\nSo, what is your name?");
+        String userInput = file.next();
+        if(userInput.equals("")) {
+            ProjectWolf saulAdvent = new ProjectWolf();
+        }
+        else {
+            ProjectWolf yourAdvent = new ProjectWolf(userInput);
+        }
+        System.out.println("\nWell then, " + name + ", your grand adventure begins now!");
     }
     
     public String stringParser(String yourInput) {
         String parsingThis = stringLowercase(yourInput);
         if(movementCheck(parsingThis).substring(0, 4).equals("move")) {
             if(parsingThis.length() > 4) {
-
+                int[] directionalMove = directionCheck(parsingThis.substring(4, parsingThis.length()));
+                mapX += directionalMove[0];
+                mayY += directionalMove[1];
+                if(directionalMove[0] == 0 && directionalMove[1] == 0) {
+                    System.out.println("You had a feeling to move, but you weren't sure which direction. Maybe if you " +
+                            "were a bit more certain, you could illicit movement.");
+                }
             }
         }
     }
