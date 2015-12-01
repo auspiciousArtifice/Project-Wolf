@@ -1,15 +1,23 @@
-Room 1: You awake in a dungeon with nothing but rags on your cold, numb body. How clichÈ. Youíre shackled to what appears to be a metal stake with a rather short chain. Itís too dark to see much around you. 
+Room 1: You awake in a dungeon with nothing but rags on your cold, numb body. How clich√©. You‚Äôre shackled to what appears to be a metal stake with a rather short chain. It‚Äôs too dark to see much around you. 
 
 What will you do?
 
-[Remove stake] ñ You were wrong. The ìmetal stakeî was actually a piece of balsa wood with a coat of silver paint over it. It was still wet. Your hands are stained with the essence of second place, but youíre free to roam.  (Go to Room 2)
-[Break chain] ñ You fail to break the chain. What? Did you think the thing was made of balsa wood or something? Donít be ridiculous. Every captor at least invests in a chain. (Remain here)
-[Walk north/south/east/west] ñ You attempt to walk to the limits of the chain and stake. You accidentally walk too far and break the ìmetal stakeî that was actually a piece of balsa wood with a coat of silver paint over it. I guess getting ahead of yourself has paid off. (Go to Room 2)
-[Stay here/chained/attached/forever/until [you/I] die] ñ Congratulations! Your patience has rewarded you with death. Turns out, nobody bothers to feed anyone down here in the dungeon. Go figure. (You Lose)
 
-Room 2: Somehow your recklessness actually got you somewhere. How protagonistic of you. Itís still too dark to see more than five feet in any direction. Where will you go?
+[Remove stake] ‚Äì You were wrong. The ‚Äúmetal stake‚Äù was actually a piece of balsa wood with a coat of silver paint over it. It was still wet. Your hands are stained with the essence of second place, but you‚Äôre free to roam.  (Go to Room 2)
 
-[Go north] ñ You go north and find that there is a locked wooden door with some unnerving fungus growing on it. There are stone walls surrounding it. (Go to 3)
-[Go south] ñ You come face to face with a stone wall with some moss growing on it. How riveting. (Go to 4)
-[Go west] ñ It appears you werenít the first one here. There is a pile of bones that occupies a great portion of the dungeon. You suspect that maybe this isnít the best place to be having an extended stay. (Go to 5)
-[Go east] - *Gasp!* Whatís this? Itís a stone wall. Thatís what this is. It is a dungeon after all. Nothing to get your knickers in a twist in this corner at least. 
+[Break chain] ‚Äì You fail to break the chain. What? Did you think the thing was made of balsa wood or something? Don‚Äôt be ridiculous. Every captor at least invests in a chain. (Remain here)
+
+[Walk north/south/east/west] ‚Äì You attempt to walk to the limits of the chain and stake. You accidentally walk too far and break the ‚Äúmetal stake‚Äù that was actually a piece of balsa wood with a coat of silver paint over it. I guess getting ahead of yourself has paid off. (Go to Room 2)
+
+[Stay here/chained/attached/forever/until [you/I] die] ‚Äì Congratulations! Your patience has rewarded you with death. Turns out, nobody bothers to feed anyone down here in the dungeon. Go figure. (You Lose)
+
+Room 2: Somehow your recklessness actually got you somewhere. How protagonistic of you. It‚Äôs still too dark to see more than five feet in any direction. Where will you go?
+
+
+[Go north] ‚Äì You go north and find that there is a locked wooden door with some unnerving fungus growing on it. There are stone walls surrounding it. (Go to 3)
+
+[Go south] ‚Äì You come face to face with a stone wall with some moss growing on it. How riveting. (Go to 4)
+
+[Go west] ‚Äì It appears you weren‚Äôt the first one here. There is a pile of bones that occupies a great portion of the dungeon. You suspect that maybe this isn‚Äôt the best place to be having an extended stay. (Go to 5)
+
+[Go east] - *Gasp!* What‚Äôs this? It‚Äôs a stone wall. That‚Äôs what this is. It is a dungeon after all. Nothing to get your knickers in a twist in this corner at least. 
