@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="84dc3868-5356-468b-b633-d8f4e0faf16f" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ProjectWolf.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/projectwolf/ProjectWolf.java" afterPath="$PROJECT_DIR$/src/com/example/projectwolf/ProjectWolf.java" />
     </list>
     <ignored path="Project-Wolf.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,10 +27,15 @@
       <file leaf-file-name="ProjectWolf.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/example/projectwolf/ProjectWolf.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.208">
-              <caret line="127" column="26" selection-start-line="127" selection-start-column="26" selection-end-line="127" selection-end-column="26" />
+            <state vertical-scroll-proportion="1.248">
+              <caret line="52" column="23" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#266#274#0" expanded="true" />
+                <element signature="e#672#680#0" expanded="true" />
+                <element signature="e#920#928#0" expanded="true" />
+                <element signature="e#1158#1166#0" expanded="true" />
+                <element signature="e#1396#1404#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -92,8 +97,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -132,7 +138,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="RunManager" selected="Application.ProjectWolf">
@@ -484,16 +489,41 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#266#274#0" expanded="true" />
+            <element signature="e#672#680#0" expanded="true" />
+            <element signature="e#920#928#0" expanded="true" />
+            <element signature="e#1158#1166#0" expanded="true" />
+            <element signature="e#1396#1404#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/projectwolf/ProjectWolf.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.208">
-          <caret line="127" column="26" selection-start-line="127" selection-start-column="26" selection-end-line="127" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#266#274#0" expanded="true" />
+            <element signature="e#672#680#0" expanded="true" />
+            <element signature="e#920#928#0" expanded="true" />
+            <element signature="e#1158#1166#0" expanded="true" />
+            <element signature="e#1396#1404#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/projectwolf/ProjectWolf.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.248">
+          <caret line="52" column="23" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#266#274#0" expanded="true" />
+            <element signature="e#672#680#0" expanded="true" />
+            <element signature="e#920#928#0" expanded="true" />
+            <element signature="e#1158#1166#0" expanded="true" />
+            <element signature="e#1396#1404#0" expanded="true" />
           </folding>
         </state>
       </provider>

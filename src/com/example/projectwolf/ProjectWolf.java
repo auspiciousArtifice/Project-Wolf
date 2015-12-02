@@ -8,6 +8,8 @@ public class ProjectWolf {
     private int fettle, robustness, fortification, creed, wealth, mapX, mapY;
     private static String name;
     private ArrayList<String> inventory = new ArrayList<String>();
+    private String weapon, armor;
+    private boolean start, battle, hungry, starving;
     private String[] attack = {"attack", "aggrieve", "aggress", "assail", "assault",
             "antagonize", "beat", "bash", "clobber", "clash with", "charge", "confront",
             "besiege", "harm", "hit", "hurt", "lay siege to", "strike", "rush"};
@@ -28,8 +30,14 @@ public class ProjectWolf {
         fortification = 1;
         creed = 1;
         wealth = 0;
+        hungry = false;
+        starving = false;
+        start = true;
+        battle = false;
         mapX = 0;
         mapY = 0;
+        weapon = "fists";
+        armor = "rags";
         name = "Saul";
     }
 
@@ -39,18 +47,25 @@ public class ProjectWolf {
         fortification = 1;
         creed = 1;
         wealth = 0;
+        hungry = false;
+        starving = false;
+        start = true;
+        battle = false;
         mapX = 0;
         mapY = 0;
+        weapon = "fists";
+        armor = "rags";
         name = given;
     }
+
     public static void main(String[] args) throws Exception {
         Scanner file = new Scanner(System.in);
         System.out.println("Well, hello there. You seem to be a bit confused. Stay calm, though, this is the beginning\n" +
-                "of your legend, your legacy, the journey of your life. All I need is your name. If you don't provide\n" +
+                "of your legend, your legacy, the journey of your life. All I need is your name. If you don't care for \n" +
                 "one, I will give you one myself.");
         System.out.println("\nSo, what is your name?");
         String userInput = file.next();
-        if(userInput.equals("")) {
+        if(userInput.equals("don't care") || userInput.equals("dontcare") || userInput.equals("dont care")) {
             ProjectWolf saulAdvent = new ProjectWolf();
         }
         else {
