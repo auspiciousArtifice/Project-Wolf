@@ -1,0 +1,26 @@
+%
+Room 5
+You awake in a dungeon with nothing but rags on your cold, numb body. How
+cliché. What's not cliche is the fact that the ground beneath you is actually
+quite warm. You're shackled to what appears to be a metal stake with a rather
+short chain. It's too dark to see much around you. 
+
+What will you do? Obvious choices are remove stake, break chain, walk
+somewhere, or stay here.
+
+- [Remove stake] - You were wrong. The "metal stake" was actually a piece of
+balsa wood with a coat of silver paint over it. It was still wet. Your hands
+are stained with the essence of second place, but you're free to roam.
+(Go to Room 2)
+- [Break chain] - You fail to break the chain. What? Did you think the thing was made of balsa wood or something? Don't be ridiculous. Every captor at least
+invests in a chain.
+(Remain here)
+- [Walk north/south/east/west] - You attempt to walk to the limits of the chain and stake. You accidentally walk too far and break the "metal stake" that was
+actually a piece of balsa wood with a coat of silver paint over it. I guess
+getting ahead of yourself has paid off.
+(Go to Room 2)
+- [Stay here/chained/attached/forever/until you die] - Congratulations! Your
+patience has rewarded you with death. Turns out, nobody bothers to feed anyone
+down here in the dungeon. Go figure.
+(You Lose)
+%

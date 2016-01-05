@@ -1,0 +1,14 @@
+%
+Tutorial
+Text about the tutorial battle would be here.  I can
+use a keyboard, yay!
+%
+%
+First Encounter
+Information about the first real battle would be here.
+what else can go here?
+%
+%
+Second Encounter
+WOW, you're still alive!  Congradulations of surviving this far.
+%
