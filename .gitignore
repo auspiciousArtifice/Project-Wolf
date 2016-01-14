@@ -10,6 +10,8 @@
 *.json
 /.idea
 /.project
+Project-Wolf.iml
+
 # Logs and databases #
 ######################
 *.log
