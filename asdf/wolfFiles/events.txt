@@ -1,4 +1,4 @@
-%
+%r1
 Room 5
 You awake in a dungeon with nothing but rags on your cold, numb body. How
 cliché. What's not cliche is the fact that the ground beneath you is actually
@@ -7,20 +7,41 @@ short chain. It's too dark to see much around you.
 
 What will you do? Obvious choices are remove stake, break chain, walk
 somewhere, or stay here.
+%r1->%c1
 
-- [Remove stake] - You were wrong. The "metal stake" was actually a piece of
+%c1
+remove stake/break chain/walk somewhere-north-south-east-west/stay here
+%a1/%a2/%a3/%gameover
+%c1
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+- [Remove stake] -
+%a1
+You were wrong. The "metal stake" was actually a piece of
 balsa wood with a coat of silver paint over it. It was still wet. Your hands
 are stained with the essence of second place, but you're free to roam.
+%a1
 (Go to Room 2)
-- [Break chain] - You fail to break the chain. What? Did you think the thing was made of balsa wood or something? Don't be ridiculous. Every captor at least
+
+- [Break chain] -
+%a2
+You fail to break the chain. What? Did you think the thing was made of balsa wood or something? Don't be ridiculous. Every captor at least
 invests in a chain.
+%a2
 (Remain here)
-- [Walk north/south/east/west] - You attempt to walk to the limits of the chain and stake. You accidentally walk too far and break the "metal stake" that was
-actually a piece of balsa wood with a coat of silver paint over it. I guess
-getting ahead of yourself has paid off.
+
+- [Walk north/south/east/west] - 
+%a3
+You attempt to walk to the limits of the chain and stake. You accidentally walk too far and break the "metal stake" that was
+actually a piece of balsa wood with a coat of silver paint over it. I guess getting ahead of yourself has paid off.
+%a3
 (Go to Room 2)
-- [Stay here/chained/attached/forever/until you die] - Congratulations! Your
-patience has rewarded you with death. Turns out, nobody bothers to feed anyone
+
+- [Stay here/chained/attached/forever/until you die] - 
+%gameover
+Congratulations! Your patience has rewarded you with death. 
+Turns out, nobody bothers to feed anyone
 down here in the dungeon. Go figure.
+%gameover
 (You Lose)
-%

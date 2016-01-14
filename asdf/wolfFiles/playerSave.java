@@ -1,3 +1,5 @@
+package wolfFiles;
+
 // John D'Angelo
 // Period 4
 import java.util.*;
