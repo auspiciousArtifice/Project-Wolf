@@ -8,8 +8,8 @@
 *.so
 *.sh
 *.json
-/config
-/bin
+/.idea
+/.project
 # Logs and databases #
 ######################
 *.log
