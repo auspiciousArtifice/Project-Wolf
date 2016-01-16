@@ -8,31 +8,34 @@ import java.util.Scanner;
 
 import java.util.ArrayList;
 
-public class DialogueReader {
+public class protoypeDiagRead {
 
-	static String header, oh;
+	static String header, currentChoice;
 	static String dialogue = "";
 
 	public static void main(String[] args) throws IOException, InterruptedException{
-		System.out.println(dialogue("%r1"));
+		System.out.println(dialogue("%r5"));
+		getChoices("%c1");
+		System.out.println(dialogue(currentChoice));
 	}
 
-	public static String dialogue(String dc) throws IOException{
+	public static String dialogue(String DialogueCode) throws IOException{
 		Scanner kb = new Scanner(new File("events.txt"));
-		dialogue="";
 		String nextDialogue = "";
 		
 		while(kb.hasNextLine()){
 			String line = kb.nextLine();
-			if(line.startsWith(dc)){
-				header = dc;
+			if(line.startsWith(DialogueCode)){
+				header = DialogueCode;
 				break;
 			}
 		}
 		//kb.nextLine();
+		
+		
 		while(kb.hasNextLine()){
 			String line = kb.nextLine();
-			if(line.startsWith(dc)){
+			if(line.startsWith(DialogueCode)){
 				nextDialogue = line.substring(line.lastIndexOf("%"));
 				break;
 			}
@@ -40,6 +43,8 @@ public class DialogueReader {
 				dialogue += line + "\n";
 			}
 		}
+		
+		
 		kb.close();
 		return dialogue;
 		/*String arr[] = new String[2];
@@ -48,33 +53,42 @@ public class DialogueReader {
 		return arr;*/
 	}
 
-	public static void choicesMet(String rc) throws IOException{
+	public static void getChoices(String ChoiceCode) throws IOException{
 		Scanner text = new Scanner(new File("events.txt"));
 		Scanner kb=new Scanner(System.in);
-
+		
 		String input="";
+		input = kb.nextLine();
+		
+		
 		while(text.hasNextLine()){
 			String line = text.nextLine();
-			if(line.equals(rc)){
-				header = rc;
+			if(line.equals(ChoiceCode)){
+				header = ChoiceCode;
 				break;
 			}
 		}
-		String c = text.nextLine();
-		String[] temp = c.split("/");
-		ArrayList<String> cancer  =  new ArrayList<String>();
-		cancer.addAll(Arrays.asList(temp));
-		String c2 = text.nextLine();
-		String[] choiceid = c2.split("/");
-		input = kb.nextLine();
-		for(String i: cancer)
+		
+		
+		String line1 = text.nextLine();
+		String[] temp = line1.split("/");
+		ArrayList<String> temp2  =  new ArrayList<String>();
+		temp2.addAll(Arrays.asList(temp));
+		
+		String line2 = text.nextLine();
+		String[] choiceid = line2.split("/");
+		
+		for(String i: temp2)
 		{
 			if(i.equals(input))
 			{
-				int f = cancer.indexOf(input);
-				oh = choiceid[f];
+				int index = temp2.indexOf(input);
+				currentChoice = choiceid[index];
 			}
 		}
+		
+		
+		
 	}
 
 	public static void slowText(String st) throws InterruptedException{

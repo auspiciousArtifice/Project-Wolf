@@ -1,4 +1,4 @@
-%r1
+%r5
 Room 5
 You awake in a dungeon with nothing but rags on your cold, numb body. How
 cliché. What's not cliche is the fact that the ground beneath you is actually
@@ -7,11 +7,11 @@ short chain. It's too dark to see much around you.
 
 What will you do? Obvious choices are remove stake, break chain, walk
 somewhere, or stay here.
-%r1->%c1
+%r5->%c1
 
 %c1
-remove stake/break chain/walk somewhere-north-south-east-west/stay here
-%a1/%a2/%a3/%gameover
+oh/remove stake/break chain/walk somewhere-north-south-east-west/stay here
+%crap/%a1/%a2/%a3/%gameover
 %c1
 
 ----------------------------------------------------------------------------------------------------------------------------------
