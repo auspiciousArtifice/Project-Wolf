@@ -11,7 +11,8 @@ public class prototypeDiagRead {
 
 	static String currentChoice;
 	static String nextDialogue = "";
-	static String filename = "src/wolfFiles/events.txt";
+	static String currentDialogue = "";
+	static String filename = "events.txt";
 	static String currentInput = "";
 
 	public static void main(String[] args) throws IOException, InterruptedException{
@@ -20,7 +21,7 @@ public class prototypeDiagRead {
 		
 	}
 	
-	public static void MessageHandler(String[] input) throws FileNotFoundException{
+	public static void MessageHandler(String[] input) throws IOException{
 		for(int i = 0; i < input.length; i++){
 			String query = input[0];
 			//query = aliases(query);
@@ -35,15 +36,17 @@ public class prototypeDiagRead {
 						System.out.println("Error with your info command. Incorrect input.");
 						break;
 					}
+				case "repeat": dialogue(currentDialogue); currentInput = ""; return;
+				case "clear": currentInput = ""; return; //input CLS method here, Player.cls();
 				default: currentInput = ""; break;
 			}
 		}
 		
 		for(String s: input){
-			currentInput += s;
+			currentInput += s + " ";
 		}
 		
-	} //working on it... need to figure out a way to handle text commands differently from choices
+	} 
 
 	public static void ChoiceHandler(String ChoiceCode) throws IOException{
 		Scanner text = new Scanner(new File(filename));
@@ -91,6 +94,7 @@ public class prototypeDiagRead {
 		}
 		System.out.println(choices.toString());
 		System.out.println(consequences.toString());
+		System.out.println(currentInput);
 		
 		for(String i: choices)
 		{
@@ -99,6 +103,14 @@ public class prototypeDiagRead {
 				int index = choices.indexOf(currentInput);
 				currentChoice = consequences.get(index);
 			}
+		}
+		
+		System.out.println(currentChoice);
+		
+		if(currentChoice == null){
+			System.out.println("Unrecognized command.");
+			ChoiceHandler(ChoiceCode);
+			return;
 		}
 		
 		dialogue(currentChoice);
@@ -110,6 +122,7 @@ public class prototypeDiagRead {
 	public static void dialogue(String DialogueCode) throws IOException{
 		Scanner kb = new Scanner(new File(filename));
 		String dialogue = "";
+		currentDialogue = DialogueCode;
 		
 		while(kb.hasNextLine()){
 			String line = kb.nextLine();
@@ -125,6 +138,9 @@ public class prototypeDiagRead {
 			if(line.startsWith(DialogueCode)){
 				nextDialogue = line.substring(line.lastIndexOf("%"));
 				break;
+			}
+			else if(line.startsWith("#")){
+				//this is a comment. Nothing happens.
 			}
 			else{
 				dialogue += line + "\n";

@@ -35,7 +35,7 @@ invests in a chain.
 %a3
 You attempt to walk to the limits of the chain and stake. You accidentally walk too far and break the "metal stake" that was
 actually a piece of balsa wood with a coat of silver paint over it. I guess getting ahead of yourself has paid off.
-%a3
+%a3 -> %r5.2
 (Go to Room 2)
 
 - [Stay here/chained/attached/forever/until you die] - 
