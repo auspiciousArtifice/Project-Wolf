@@ -1,3 +1,6 @@
+/*spiral6 - Shamee Mahmud 
+ */
+
 package wolfFiles;
 
 import java.io.File;
@@ -12,16 +15,15 @@ public class prototypeDiagRead {
 	static String currentChoice;
 	static String nextDialogue = "";
 	static String currentDialogue = "";
-	static String filename = "events.txt";
+	static String filename = "src/wolfFiles/events.txt";
 	static String currentInput = "";
 
 	public static void main(String[] args) throws IOException, InterruptedException{
 		dialogue("%r5");
 		//ChoiceHandler("%c1");
-		
 	}
 	
-	public static void MessageHandler(String[] input) throws IOException{
+	public static void MessageHandler(String[] input) throws IOException, InterruptedException{
 		for(int i = 0; i < input.length; i++){
 			String query = input[0];
 			//query = aliases(query);
@@ -36,8 +38,9 @@ public class prototypeDiagRead {
 						System.out.println("Error with your info command. Incorrect input.");
 						break;
 					}
-				case "repeat": dialogue(currentDialogue); currentInput = ""; return;
-				case "clear": currentInput = ""; return; //input CLS method here, Player.cls();
+				case "eat": currentInput = ""; break; //you're supposed to eat something from inventory, but it hasn't been implemented yet.
+				case "repeat": Helper.cls(); dialogue(currentDialogue); currentInput = ""; return;
+				case "clear": currentInput = ""; Helper.cls(); return; //input CLS method here, Player.cls();
 				default: currentInput = ""; break;
 			}
 		}
@@ -48,11 +51,13 @@ public class prototypeDiagRead {
 		
 	} 
 
-	public static void ChoiceHandler(String ChoiceCode) throws IOException{
+	public static void ChoiceHandler(String ChoiceCode) throws IOException, InterruptedException{
 		Scanner text = new Scanner(new File(filename));
 		Scanner kb=new Scanner(System.in);
 		
-		MessageHandler(kb.nextLine().split("\\s+"));
+		
+		String input = kb.nextLine(); //have to set to string, otherwise NPE occurs.		
+		MessageHandler(input.split("\\s+"));
 		
 		currentInput = currentInput.trim();
 		
@@ -66,27 +71,23 @@ public class prototypeDiagRead {
 			if(line.equals(ChoiceCode)){
 				break;
 			}
-		}
+		} //finds the ChoiceCode in events.txt
 		
-		
-		String line1 = text.nextLine();
-		String[] temp = line1.split("/");
-		ArrayList<String> choices  =  new ArrayList<String>();
-		choices.addAll(Arrays.asList(temp));
-		
-		String line2 = text.nextLine();
-		String[] temp2 = line2.split("/");
-		ArrayList<String> consequences  =  new ArrayList<String>();
-		consequences.addAll(Arrays.asList(temp2));
+		String strChoices = text.nextLine();
+		ArrayList<String> choices = Helper.asArrayList(strChoices.substring(strChoices.indexOf(" ") + 1).split("/"));
+		String strConsequences = text.nextLine();
+		ArrayList<String> consequences = Helper.asArrayList(strConsequences.substring(strConsequences.indexOf(" ") + 1).split("/"));
 		
 		for(int i = 0; i < choices.size(); i++){
 			if(choices.get(i).contains("-")){
 				String hyphenTemp = choices.get(i);
-				String firstpart = hyphenTemp.substring(0, hyphenTemp.indexOf(" ") +1);
+				String[] firstparts = hyphenTemp.substring(0, hyphenTemp.indexOf(" ")).split("-");
 				String[] secondparts = hyphenTemp.substring(hyphenTemp.indexOf(" ") +1).split("-");
-				for(String hyphens: secondparts){
-					choices.add(firstpart + hyphens);
-					consequences.add(consequences.get(i));
+				for(String fHyphens: firstparts){
+					for(String sHyphens: secondparts){
+						choices.add(fHyphens + " " + sHyphens);
+						consequences.add(consequences.get(i));
+					}
 				}
 				choices.remove(i);
 				consequences.remove(i);
@@ -119,7 +120,7 @@ public class prototypeDiagRead {
 		
 	}
 	
-	public static void dialogue(String DialogueCode) throws IOException{
+	public static void dialogue(String DialogueCode) throws IOException, InterruptedException{
 		Scanner kb = new Scanner(new File(filename));
 		String dialogue = "";
 		currentDialogue = DialogueCode;
@@ -129,21 +130,46 @@ public class prototypeDiagRead {
 			if(line.startsWith(DialogueCode)){
 				break;
 			}
-		}
-		//kb.nextLine();
+		} //finds the DialogueCode in events.txt
 		
+		boolean slowText = false;
 		
 		while(kb.hasNextLine()){
 			String line = kb.nextLine();
 			if(line.startsWith(DialogueCode)){
 				nextDialogue = line.substring(line.lastIndexOf("%"));
 				break;
+				//finds the last occurence of DialogueCode, parses the arrow to the next code
 			}
 			else if(line.startsWith("#")){
 				//this is a comment. Nothing happens.
 			}
 			else{
-				dialogue += line + "\n";
+				String[] arr = line.split("\\s+");
+				for(int i = 0; i < arr.length; i++){
+					if(arr[i].contains("(s)")){
+						arr[i] = arr[i].replace("(s)", "");
+						slowText = true;
+					}
+					if(arr[i].contains("(/s)")){
+						arr[i] = arr[i].replace("(/s)", "");
+						slowText = false;
+					}
+					if(arr[i].contains("(pause")){
+						pause(Helper.asDouble(arr[i+1].substring(0, arr[i+1].indexOf(")"))));
+						arr[i] = "";
+						arr[i+1] = "";
+					}
+					
+					
+					if(slowText){
+						slowPrint(arr[i] + " ");
+					}
+					else{
+						System.out.print(arr[i] + " ");
+					}
+				}
+				System.out.println();
 			}
 		}
 		
@@ -154,7 +180,15 @@ public class prototypeDiagRead {
 			ChoiceHandler(nextDialogue);
 		}
 		else if(nextDialogue.startsWith("%r")){
+			System.out.println("This program is terminated, because someone didn't write the room reference.");
 			//todo RoomHandler, loads next Room/Text
+		}
+		else if(nextDialogue.startsWith("%end")){
+			System.out.println("The game has ended.");
+		}
+		else if(currentDialogue.equals(nextDialogue)){
+			System.out.println("This program is terminated, because someone didn't write the pointer to another dialogue.");
+			System.out.println("So to save myself the effort of looping, I'd rather just stare at you blankly.");
 		}
 		else{
 			dialogue(nextDialogue);
@@ -199,7 +233,7 @@ public class prototypeDiagRead {
 		
 	}*/ //deprecated, replaced by ChoiceHandler
 
-	public static void slowText(String st) throws InterruptedException{
+	public static void slowPrint(String st) throws InterruptedException{
 		for(int i = 0; i < st.length(); i++){
 			System.out.print(st.substring(i,i+1));
 			Thread.sleep(100);
@@ -212,6 +246,12 @@ public class prototypeDiagRead {
 			Thread.sleep(speed);
 		}
 	}
+	
+	public static void pause(double amount) throws InterruptedException{
+		Thread.sleep((long)amount * 1000);
+	}
+	
+	
 	
 	
 	
