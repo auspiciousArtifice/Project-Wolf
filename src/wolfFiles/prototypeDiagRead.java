@@ -15,69 +15,73 @@ public class prototypeDiagRead {
 	static String currentChoice;
 	static String nextDialogue = "";
 	static String currentDialogue = "";
-	static String filename = "src/wolfFiles/events.txt";
+	static String filename = "events.txt";
 	static String currentInput = "";
 
 	public static void main(String[] args) throws IOException, InterruptedException{
-		dialogue("%r5");
-		//ChoiceHandler("%c1");
+		System.out.print("stuff");
+		System.out.print("\b\b\b   ");
 	}
-	
+
 	public static void MessageHandler(String[] input) throws IOException, InterruptedException{
 		for(int i = 0; i < input.length; i++){
 			String query = input[0];
 			//query = aliases(query);
-			
+
 			switch(query){
-				case "hello": currentInput = ""; break;
-				case "info": 
-					try{
+			case "hello": currentInput = ""; break;
+			case "info": 
+				try{
 					String subject = input[1]; currentInput = ""; return; //info(subject);
-					}
-					catch(Exception e){
-						System.out.println("Error with your info command. Incorrect input.");
-						break;
-					}
-				case "eat": currentInput = ""; break; //you're supposed to eat something from inventory, but it hasn't been implemented yet.
-				case "repeat": Helper.cls(); dialogue(currentDialogue); currentInput = ""; return;
-				case "clear": currentInput = ""; Helper.cls(); return; //input CLS method here, Player.cls();
-				default: currentInput = ""; break;
+				}
+				catch(Exception e){
+					System.out.println("Error with your info command. Incorrect input.");
+					break;
+				}
+			case "eat": currentInput = ""; break; 
+			//you're supposed to eat something from inventory, but it hasn't been implemented yet.
+			case "save": currentInput = ""; break;
+			//you're supposed to save the game with its stuff, but TBD if this is necessary or
+			//needs to be implemented
+			case "repeat": Helper.cls(); dialogue(currentDialogue); currentInput = ""; return;
+			case "clear": currentInput = ""; Helper.cls(); return; 
+			default: currentInput = ""; break;
 			}
 		}
-		
+
 		for(String s: input){
 			currentInput += s + " ";
 		}
-		
+
 	} 
 
 	public static void ChoiceHandler(String ChoiceCode) throws IOException, InterruptedException{
 		Scanner text = new Scanner(new File(filename));
 		Scanner kb=new Scanner(System.in);
-		
-		
+
+
 		String input = kb.nextLine(); //have to set to string, otherwise NPE occurs.		
 		MessageHandler(input.split("\\s+"));
-		
+
 		currentInput = currentInput.trim();
-		
+
 		if(currentInput.equals("")){
 			ChoiceHandler(ChoiceCode);
 			return;
 		}
-		
+
 		while(text.hasNextLine()){
 			String line = text.nextLine();
 			if(line.equals(ChoiceCode)){
 				break;
 			}
 		} //finds the ChoiceCode in events.txt
-		
+
 		String strChoices = text.nextLine();
 		ArrayList<String> choices = Helper.asArrayList(strChoices.substring(strChoices.indexOf(" ") + 1).split("/"));
 		String strConsequences = text.nextLine();
 		ArrayList<String> consequences = Helper.asArrayList(strConsequences.substring(strConsequences.indexOf(" ") + 1).split("/"));
-		
+
 		for(int i = 0; i < choices.size(); i++){
 			if(choices.get(i).contains("-")){
 				String hyphenTemp = choices.get(i);
@@ -96,7 +100,7 @@ public class prototypeDiagRead {
 		System.out.println(choices.toString());
 		System.out.println(consequences.toString());
 		System.out.println(currentInput);
-		
+
 		for(String i: choices)
 		{
 			if(i.equals(currentInput))
@@ -105,35 +109,35 @@ public class prototypeDiagRead {
 				currentChoice = consequences.get(index);
 			}
 		}
-		
+
 		System.out.println(currentChoice);
-		
+
 		if(currentChoice == null){
 			System.out.println("Unrecognized command.");
 			ChoiceHandler(ChoiceCode);
 			return;
 		}
-		
+
 		dialogue(currentChoice);
 		text.close();
 		kb.close();
-		
+
 	}
-	
+
 	public static void dialogue(String DialogueCode) throws IOException, InterruptedException{
 		Scanner kb = new Scanner(new File(filename));
 		String dialogue = "";
 		currentDialogue = DialogueCode;
-		
+
 		while(kb.hasNextLine()){
 			String line = kb.nextLine();
 			if(line.startsWith(DialogueCode)){
 				break;
 			}
 		} //finds the DialogueCode in events.txt
-		
+
 		boolean slowText = false;
-		
+
 		while(kb.hasNextLine()){
 			String line = kb.nextLine();
 			if(line.startsWith(DialogueCode)){
@@ -146,22 +150,47 @@ public class prototypeDiagRead {
 			}
 			else{
 				String[] arr = line.split("\\s+");
-				for(int i = 0; i < arr.length; i++){
+				for(int i = 0; i < arr.length; i++){					
+
+
 					if(arr[i].contains("(s)")){
 						arr[i] = arr[i].replace("(s)", "");
 						slowText = true;
-					}
+					} //slowText recog
 					if(arr[i].contains("(/s)")){
 						arr[i] = arr[i].replace("(/s)", "");
 						slowText = false;
-					}
+					} //slowText end recog
 					if(arr[i].contains("(pause")){
 						pause(Helper.asDouble(arr[i+1].substring(0, arr[i+1].indexOf(")"))));
 						arr[i] = "";
 						arr[i+1] = "";
-					}
-					
-					
+					} //pause command
+					if(arr[i].contains("(get")){
+						//some sort of implementation of items being 
+						//added to the inventory, as well as a print message.
+						arr[i] = "";
+						arr[i+1] = "";
+					} //get command
+
+
+					if(arr[i].contains("(mTrack")){
+						//some sort of implementation of track changing, called to MusicThread.
+						arr[i] = "";
+						arr[i+1] = "";
+					} //mTrack command
+					if(arr[i].contains("(mVol")){
+						//some sort of implementation of volume adjustment, called to MusicThread.
+						arr[i] = "";
+						arr[i+1] = "";
+					} //mVol command
+					if(arr[i].contains("(mAction")){
+						//some sort of implementation of music play/pause, called to MusicThread.
+						arr[i] = "";
+						arr[i+1] = "";
+					} //mAction command
+
+
 					if(slowText){
 						slowPrint(arr[i] + " ");
 					}
@@ -172,10 +201,10 @@ public class prototypeDiagRead {
 				System.out.println();
 			}
 		}
-		
+
 		System.out.println(dialogue);
 		kb.close();
-		
+
 		if(nextDialogue.startsWith("%c")){
 			ChoiceHandler(nextDialogue);
 		}
@@ -193,33 +222,33 @@ public class prototypeDiagRead {
 		else{
 			dialogue(nextDialogue);
 		}
-		
+
 	}
 
 	/*public static void getChoices(String ChoiceCode) throws IOException{
 		Scanner text = new Scanner(new File(filename));
 		Scanner kb=new Scanner(System.in);
-		
+
 		String input="";
 		input = kb.nextLine();
-		
-		
+
+
 		while(text.hasNextLine()){
 			String line = text.nextLine();
 			if(line.equals(ChoiceCode)){
 				break;
 			}
 		}
-		
-		
+
+
 		String line1 = text.nextLine();
 		String[] temp = line1.split("/");
 		ArrayList<String> temp2  =  new ArrayList<String>();
 		temp2.addAll(Arrays.asList(temp));
-		
+
 		String line2 = text.nextLine();
 		String[] choiceid = line2.split("/");
-		
+
 		for(String i: temp2)
 		{
 			if(i.equals(input))
@@ -228,9 +257,9 @@ public class prototypeDiagRead {
 				currentChoice = choiceid[index];
 			}
 		}
-		
-		
-		
+
+
+
 	}*/ //deprecated, replaced by ChoiceHandler
 
 	public static void slowPrint(String st) throws InterruptedException{
@@ -239,24 +268,24 @@ public class prototypeDiagRead {
 			Thread.sleep(100);
 		}
 	}
-	
-	public static void slowText(String st, int speed) throws InterruptedException{
+
+	public static void slowPrint(String st, int speed) throws InterruptedException{
 		for(int i = 0; i < st.length(); i++){
 			System.out.print(st.substring(i,i+1));
 			Thread.sleep(speed);
 		}
 	}
-	
+
 	public static void pause(double amount) throws InterruptedException{
 		Thread.sleep((long)amount * 1000);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
 }
