@@ -1,14 +1,30 @@
-%
-Tutorial
-Text about the tutorial battle would be here.  I can
-use a keyboard, yay!
-%
-%
-First Encounter
-Information about the first real battle would be here.
-what else can go here?
-%
-%
-Second Encounter
-WOW, you're still alive!  Congradulations of surviving this far.
-%
+~~ Dungeon Knight Boss Fight ~~
+The knight draws his sword. His armor is rusty, but his wait is now over. You don’t feel like you’re paid enough to do this. 
+Becuase you’re not paid at all. Have at the knight! (mTrack battleTheme)
+
+Contextual Battle Actions: 
+-[Abscond] (Updated) You can’t run from this fight for some reason. Maybe you’re just too thick skulled to back down from a tough skirmish. 
+
+-[If character is di] Well, at least you don’t have to suffer in that dungeon anymore.
+-[If character is victorious] After the last blow, you stand victoriously. Give yourself a pat on the back. You deserve it after all. You’ve successfully murdered someone or something you didn’t know the identity of. They could’ve had a family, friends, even debts to banks that they haven’t paid off. But no matter. Too late for regrets. The far side door is now clear to pass through. 
+-[Go north] (Go to 12)
+-[Go south] (Go to 10)
+
+---------------------------------------------------------------------------------------------------
+
+~~ Tutorial Battle ~~ 
+Now look at what you’ve gotten yourself into. And of all enemies, a rat? 
+All discretions aside, it seems as though you have a battle on your hands. How is your experience in battle?
+-Good (Goes to same response below)
+-Bad (Goes to same response below)
+It doesn’t matter what your answer was in the first place. Since you bothered exploring this room to its entirety, you obviously don’t have the foggiest idea of what you’re doing, so allow me to explain the ins and outs of battle. 
+Firstly, your METTLE is displayed in the top left corner. It represents your will to live on. If it is depleted completely, you will of course die. 
+Secondly. Your enemies will be listed below your METTLE. Currently, it is only a measly dungeon rat, but who knows what foes you will face. You can only vaguely gauge your enemies’ METTLE, so be wary of those who are tougher than they seem. 
+Finally, you have a grand total of 3 options to choose from during battle: STRIKE, FORTIFY, and ABSCOND. Each is pretty self explanatory. There are, however, contextual actions, but when the time comes, they will hopefully be obvious enough.
+Now, have at that rat! (mTrack epicBattleThemeYetToBeNamedOrStolenBecauseCopyrightLawsDontWorkLOL)
+#or maybe the battle theme will really suck, who knows
+
+-[If character is di] Oh dear. You’ve met with a terrible fate. For being a complete scrub.
+-[If character is victorious] Now that you feel more comfortable with battle, random encounters will occur. You feel as though this reward is not as pleasing as you would have expected. 
+
+---------------------------------------------------------------------------------------------------

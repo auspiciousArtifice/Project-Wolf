@@ -1,5 +1,5 @@
-%r5
-Room 5
+%r5.1
+Room 5.1
 You awake in a dungeon with nothing but rags on your cold, numb body. How
 cliché. What's not cliché is the fact that the ground beneath you is actually
 quite warm. You're shackled to what appears to be a metal stake with a rather
@@ -8,36 +8,34 @@ short chain. (s)It's too dark to see much around you... (/s) (pause 2)
 
 What will you do? Obvious choices are remove stake, break chain, walk
 somewhere, or stay here.
-%r5->%c1
+%r5.1->%c5
 
-%c1
+%c5
 Choices: remove stake/break chain/walk-move somewhere-north-south-east-west/stay here
-Consequences: %a1/%a2/%a3/%gameover
-%c1
-
-----------------------------------------------------------------------------------------------------------------------------------
+Consequences: %r5.1.1/%r5.1.2/%r5.1.3/%gameover
+%c5
 
 - [Remove stake] -
-%a1
+%r5.1.1
 You were wrong. The "metal stake" was actually a piece of
 balsa wood with a coat of silver paint over it. It was still wet. Your hands
 are stained with the essence of second place, but you're free to roam.
-%a1
-(Go to Room 2)
+%r5.1.1 -> %r5.2
+(Go to Room 5.2)
 
 - [Break chain] -
-%a2
+%r5.1.2
 You fail to break the chain. What? Did you think the thing was made of balsa wood or something? Don't be ridiculous. Every captor at least
 invests in a chain.
-%a2
+%r5.1.2 -> %c5
 (Remain here)
 
 - [Walk north/south/east/west] - 
-%a3
+%r5.1.3
 You attempt to walk to the limits of the chain and stake. You accidentally walk too far and break the "metal stake" that was
 actually a piece of balsa wood with a coat of silver paint over it. I guess getting ahead of yourself has paid off.
-%a3 -> %r5.2
-(Go to Room 2)
+%r5.1.3 -> %r5.2
+(Go to Room 5.2)
 
 - [Stay here/chained/attached/forever/until you die] - 
 %gameover
@@ -46,3 +44,257 @@ Turns out, nobody bothers to feed anyone
 down here in the dungeon. Go figure.
 %gameover -> %end
 (You Lose)
+
+-----------------------------------------------------------------------------------------------------------------
+%a1
+Area 1: Dungeon
+%a1 -> %r1
+
+%r1
+Room 1: 
+Something about this corner makes you feel like a journeyman, a tyro, a neophyte. 
+You honestly don’t care, but you’re not going to get anywhere staring at this corner. 
+If you keep this up, you might as well be labeled as a newbie since you haven’t done anything memorable.
+%r1 -> %c1
+
+%c1
+Choices: go south/go east
+Consequences: %r4/%r2
+%c1
+
+%r2 
+Room 2: 
+A wooden door is bolted shut just to the north. Now would be a good time to have 
+more than (stat ROB) robustness. If you know what that is in the first place.
+%r2
+
+%c2
+Choices: go south/go east/go west/use key
+Consequences: %r5/%r3/%r1/%r2.1
+%c2
+
+%r2.1
+The door unlocks and you go right on through.
+%r2.1 -> %r10
+
+%r3 
+Room 3: 
+Mossy. Very mossy. If this stuff wasn’t here, you would be dead where you stand seeing 
+as though there are no openings for you to breathe. (s)Something glints in the greenery…(/s)
+%r3 -> %c3
+
+%c3
+Choices: go west/go south/check moss
+Consequences: %r2/%r6/%r3.1
+%c3
+
+%r3.1
+You got the dungeon’s door key. (get DoorKey)
+%r3.1
+
+%r4 
+Room 4: 
+Well, a dungeon wouldn’t be complete without an unassuming pile of bones. 
+Here is said pile of bones. Something tells you not to sift around in the pile. 
+%r4 -> %c4
+
+%c4
+Choices: go east/go south/go north/sift through pile
+Consequences: %r5/%r7/%r1/%gameover2
+%c4
+
+%r5
+%r5 - %r5.1
+
+%gameover2
+Well aren’t you a rebel? A bone pokes through your stomach as soon as you dive into the bone pile, successfully impaling you. 
+What were you expecting, to swim around in a pile of degrading human remains? Well, you’ve now bled out. You have died.
+%gameover2 -> %end
+
+%r5.2 
+Room 5.2: 
+Somehow your recklessness actually got you somewhere. 
+How protagonistic of you. It’s still too dark to see more than five feet in any direction. Where will you go?
+%r5.2 -> %c5.2
+
+%c5.2
+Choices: go north/go south/go east/go west
+Consequences: %r2/%r8/%r4/%r6
+%c5.2
+
+%r6
+%r6 -> %r6.1
+
+%r6.1
+Room 6.1: 
+It’s a wall. How riveting. Do you wish to pledge your allegiance to this wall?
+%r6.1 -> %c6.1
+
+%c6.1
+Choices: yes-yea-yeah-ok-sure/no-nope
+Consequences: %gameover3/%r6.1.1
+%c6.1
+
+%gameover3
+You shall now assume your original position. Under the wall. You are crushed to death by the enormous girth of the stone wall. Don’t be so eager to give out your trust.
+%gameover3 -> %end
+
+%r6.1.1
+Smart choice. The bricks seemed too organized to trust.
+%r6.1.1 -> %r6.2
+
+%r6.2
+Room 6.2: 
+It’s a wall. You know better. 
+%r6.2 -> %c6.2
+
+%c6.2
+Choices: go north/go west/go south
+Consequences: %r3/%r5/%r9
+%c6.2
+
+%r7
+Room 7: 
+There seems to be a dead adventurer here. His body is no more, but his equipment remains largely unscathed. 
+There is a copper sword and a set of leather armour. 
+%r7 -> %c7
+
+%c7
+Choices: take sword/take armor/take equipment
+Consequences: %r7.1/%r7.2/%r7.3
+%c7
+
+%r7.1
+You obtain the worst of all swords. Better than your fists. (get CopperSword)
+%r7.1
+
+%r7.2
+The armor needs refining, but it is more protection from the elements and from monsters. (Get LeatherArmour)
+%r7.2
+
+%r7.3
+You take the adventurer’s gear and go on about your business. (Get CopperSword and LeatherArmour)
+#*If not obtained already* 
+#Have to implement some sort of check to see which equipment already in inventory before.
+#Applies to room 7.3, 7.2 and 7.1.
+#also literally no dialogue pointer, Harry why
+%r7.3
+
+%r8
+Room 8: Ah, the south side. Ordinarily a disheveled mess, it seems rather clean. In any case, it’s so clean, you can take a good look 
+at yourself through that reflective bit over th… Oh. That’s a mirror. How… quaint. Will you take a look? 
+#Revolver Ocelot, Revolver Ocelot, Revolver Ocelot, Revolver Ocelot, Revolver Ocelot, Revolver Ocelot, Revolver Ocelot, Revolver Ocelot, Revolver Ocelot, Revolver Ocelot
+#%r8 best gun
+%r8 -> %c8
+
+%c8
+Choices: yes/no/go north/go east/go west
+Consequences: %r8.1/%r8.2/%r5/%r7/%r9
+%c8
+
+%r8.1
+You take a good look. The image is ingrained in your mind. Perhaps it will come in handy later.
+%r8.1 -> %c8
+
+%r8.2
+You resist the urge of narcissism and turn away.
+%r8.2 -> %c8
+
+%r9
+Room 9: 
+Nothing to see here. Unless if you count the rats. There are, in fact, rats. 
+Speaking of which, here comes one right n-- (sfx metalgear!) (battle %tutorial)
+#where did the dialogueCode go @JackSparrow
+%r9
+
+%r10
+Room 10: 
+You have entered a long hallway lit by nothing but candles. At the end of said hallway, there is a very daunting looking knight at the end of the hallway. 
+Perhaps you should take some time to increase your vitality before engaging it. 
+%r10 -> %c10
+
+%c10
+Choices: fight the knight/go north/go south
+Consequences: %r10.1/%r11/%r2
+%c10
+
+%r10.1
+Are you sure about this? Moving north will engage the battle.
+%r10.1 -> %c10
+
+%r11
+# (if boolean !(knightiskil)) 
+Room 11: 
+The knight has you in its sights. Prepare for a fight. (battle %DungeonKnight)
+%r11
+
+%r11.2
+#(if boolean knightiskil)
+Room 11:
+Here lies the sad excuse for a knight. If Arthurian legends have taught you anything, it’s been to not be like this poser. Moving on, then.
+#when you don't have dem dialogueCodes tho
+%r11.2
+
+%r12
+Room 12: Here stands the door to new opportunities. Probably. You haven’t opened it yet. 
+This dump is probably useless to you anyways. Getting out of it as soon as possible would most likely be beneficial. 
+%r12 - %c12
+
+%c12
+Choices: go north/go south
+Consequences: %a2/%r11
+%c12
+
+-[Go north] {Go to Area 2: Forest Maze}
+-[Go south] (Go to 11)
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+%a2
+Area 2: Forest Maze (by definition a new area, but it’s really just a bunch of randomly generated rooms with an exit path that can be accessed anywhere)
+%a2 -> %rSomethingThatHasn'tBeenTakenYet
+
+Random generation formula: Math.random() * 15
+Total of 15 different RNG rooms and one constant room, counter for how many rooms one has accessed, every 17th room results in the final non-random room containing a rest area and the exit path code (if checked).
+Stack containing direction chosen for past 10 rooms. If matched with the “EXITCODESTACK,” exit to Area 3. 
+
+RNGROOM 1: There certainly isn’t a lack of greenery here. Trees surround the clearing you stand in, and there doesn’t seem to be anything but shadows filling up the horizon. 
+
+RNGROOM 2: You hear wolves howl in the distance. You think of being adopted by them and subsequently mooching off of their work. Nah. 
+
+RNGROOM 3: Whilst examining your surroundings, a shadow moves in front of you. Suspicious, but you think you know better. You think…
+
+RNGROOM 4: There is a flower in the middle of a plain spot in the ground. You try to pick it up, but it seems to be rooted tightly to the ground. How disheartening. 
+
+RNGROOM 5: You think that you might have enjoyed walks in a forest at one point in your life. Not anymore, however. Not anymore.
+
+RNGROOM 6: Shadows envelop your body, doing absolutely nothing physically but making you feel a bit uneasy. 
+
+RNGROOM 7: A fox brushes past, but promptly gets eaten by a large bird. How unnerving. 
+
+RNGROOM 8: You ponder the mysteries of life. But then realize you’re not sure if you’re even living at this very moment. How curious. 
+
+RNGROOM 9: Qwertyuiopasdfghjklzxcvbnm. What was that? You’re not even sure yourself. It’s as if a lazy playwright just ran out of things to type. You feel like you should just stop this train of thought.
+
+RNGROOM 10: You spot a babbling brook nearby and take a drink. You stub your toe on a stone on your way back. Ouch. 
+
+RNGROOM 11: There is a chest in a clearing. Seems a bit too convenient, but loot is still loot. (Opening the chest results in the ShoddyMimic fight)
+
+RNGROOM 12: You think to yourself that entering this forest was so simple, but exiting is such a chore. Even though following the path turns will probably lead to a way out, you think that it would take the rest of your life.
+
+RNGROOM 13: This place feels unlucky. You don’t really know why, though. It’s just a feeling you’ve got. 
+
+RNGROOM 14: You hum a tune. It was a good tune. You feel proud about yourself. 
+
+RNGROOM 15: You feel like you’re about to reach the end, but then again, it may be a while. It’s not like you know the place in and out. 
+
+Actual not RNGROOM 16: You come across a hut under an oak tree. The hut itself seems pretty cozy and even has a bed under its protective covering. Even though it seems to be summer time, the tree’s leaves are a bright orange hue. You see an inscription on the far left side of the trunk. You think that taking a rest may be a good idea at this point, seeing as though you’ve been here a while. 
+
+-[Rest] (Regain all of HP) You wake up feeling invigorated. 
+-[Check inscription] You check the inscription scrawled on the trunk. They seem to be arrows. They point forward, forward, back, back, left, right, left, right, right, back. What? If these are some sort of directions, they don’t make sense to you. Below the arrows there are a few words, “Perspective is key.” Great, more convoluted nonsense.
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Area 3: City of Thieves
+A town with random encounters. How fun.
+
+Room 
