@@ -19,8 +19,7 @@ public class prototypeDiagRead {
 	static String currentInput = "";
 
 	public static void main(String[] args) throws IOException, InterruptedException{
-		System.out.print("stuff");
-		System.out.print("\b\b\b   ");
+		dialogue("%a1");
 	}
 
 	public static void MessageHandler(String[] input) throws IOException, InterruptedException{
@@ -209,7 +208,8 @@ public class prototypeDiagRead {
 			ChoiceHandler(nextDialogue);
 		}
 		else if(nextDialogue.startsWith("%r")){
-			System.out.println("This program is terminated, because someone didn't write the room reference.");
+			//System.out.println("This program is terminated, because someone didn't write the room reference.");
+			dialogue(nextDialogue);
 			//todo RoomHandler, loads next Room/Text
 		}
 		else if(nextDialogue.startsWith("%end")){

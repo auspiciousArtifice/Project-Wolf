@@ -8,6 +8,7 @@
 *.so
 *.sh
 *.json
+*.mp3
 /.idea
 /.project
 Project-Wolf.iml
