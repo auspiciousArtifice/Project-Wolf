@@ -10,6 +10,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+import music.musicThread;
+
 public class prototypeDiagRead {
 
 	static String currentChoice;
@@ -19,7 +21,10 @@ public class prototypeDiagRead {
 	static String currentInput = "";
 
 	public static void main(String[] args) throws IOException, InterruptedException{
-		dialogue("%a1");
+		//dialogue("%a1");
+		Thread t = new Thread(new musicThread());
+		t.start();
+		System.out.println("I'm done.");
 	}
 
 	public static void MessageHandler(String[] input) throws IOException, InterruptedException{
