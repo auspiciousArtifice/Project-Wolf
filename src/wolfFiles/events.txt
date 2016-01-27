@@ -66,7 +66,7 @@ Consequences: %r4/%r2
 Room 2: 
 A wooden door is bolted shut just to the north. Now would be a good time to have 
 more than (stat ROB) robustness. If you know what that is in the first place.
-%r2
+%r2 -> %c2
 
 %c2
 Choices: go south/go east/go west/use key
@@ -189,7 +189,7 @@ at yourself through that reflective bit over th… Oh. That’s a mirror. How… quain
 
 %c8
 Choices: yes/no/go north/go east/go west
-Consequences: %r8.1/%r8.2/%r5/%r7/%r9
+Consequences: %r8.1/%r8.2/%r5.2/%r7/%r9
 %c8
 
 %r8.1

@@ -21,10 +21,10 @@ public class prototypeDiagRead {
 	static String currentInput = "";
 
 	public static void main(String[] args) throws IOException, InterruptedException{
-		//dialogue("%a1");
-		Thread t = new Thread(new musicThread());
+		dialogue("%r8");
+		/*Thread t = new Thread(new musicThread());
 		t.start();
-		System.out.println("I'm done.");
+		System.out.println("I'm done.");*/
 	}
 
 	public static void MessageHandler(String[] input) throws IOException, InterruptedException{
@@ -85,20 +85,31 @@ public class prototypeDiagRead {
 		ArrayList<String> choices = Helper.asArrayList(strChoices.substring(strChoices.indexOf(" ") + 1).split("/"));
 		String strConsequences = text.nextLine();
 		ArrayList<String> consequences = Helper.asArrayList(strConsequences.substring(strConsequences.indexOf(" ") + 1).split("/"));
-
+		
 		for(int i = 0; i < choices.size(); i++){
 			if(choices.get(i).contains("-")){
 				String hyphenTemp = choices.get(i);
-				String[] firstparts = hyphenTemp.substring(0, hyphenTemp.indexOf(" ")).split("-");
-				String[] secondparts = hyphenTemp.substring(hyphenTemp.indexOf(" ") +1).split("-");
-				for(String fHyphens: firstparts){
-					for(String sHyphens: secondparts){
-						choices.add(fHyphens + " " + sHyphens);
+				int indexOfSpace = hyphenTemp.indexOf(" ");
+				if(indexOfSpace < 0){
+					String[] firstparts = hyphenTemp.substring(0).split("-");
+					for(String fHyphens: firstparts){
+						choices.add(fHyphens);
 						consequences.add(consequences.get(i));
+					}
+				}
+				else{
+					String[] firstparts = hyphenTemp.substring(0, hyphenTemp.indexOf(" ")).split("-");
+					String[] secondparts = hyphenTemp.substring(hyphenTemp.indexOf(" ") +1).split("-");
+					for(String fHyphens: firstparts){
+						for(String sHyphens: secondparts){
+							choices.add(fHyphens + " " + sHyphens);
+							consequences.add(consequences.get(i));
+						}
 					}
 				}
 				choices.remove(i);
 				consequences.remove(i);
+				i--;
 			}
 		}
 		System.out.println(choices.toString());
@@ -132,6 +143,7 @@ public class prototypeDiagRead {
 		Scanner kb = new Scanner(new File(filename));
 		String dialogue = "";
 		currentDialogue = DialogueCode;
+		nextDialogue = "";
 
 		while(kb.hasNextLine()){
 			String line = kb.nextLine();
