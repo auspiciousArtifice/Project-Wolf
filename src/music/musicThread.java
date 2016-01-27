@@ -30,7 +30,7 @@ public class musicThread extends Application{
 		 * theme8
 		 */
 		
-		final Media media = new Media(new File("C:\\Users\\sami_\\OneDrive\\Documents\\workspace\\Project-Wolf\\src\\music\\battleTheme8.mp3").toURI().toString());
+		final Media media = new Media(new File("C:\\Users\\sami_\\OneDrive\\Documents\\workspace\\Project-Wolf\\src\\music\\battleTheme2.mp3").toURI().toString());
 		final MediaPlayer mediaPlayer = new MediaPlayer(media);
 
 		mediaPlayer.play();
