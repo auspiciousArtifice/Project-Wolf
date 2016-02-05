@@ -11,6 +11,8 @@
 *.mp3
 /.idea
 /.project
+/bin
+/.settings
 Project-Wolf.iml
 
 # Logs and databases #
