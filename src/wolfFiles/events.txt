@@ -17,37 +17,38 @@ The two doors lead to both south and east.
 %r1 -> %c1
 
 %c1
-Choices: go-walk south/go-walk east
+Choices: go-move-walk-travel-head south/go-move-walk-travel-head east
 Consequences: %r4/%r2
 %c1
 
 
 Room 2
 %r2
-You see a wooden door is bolted shut just to the north. Now would be a good time to have 
-more than (stat ROB) robustness. If you know what that is in the first place.
+You see a wooden door is bolted shut just to the north. Now would be a good timeto have more than (stat ROB) robustness. If you know what that is in the first
+place.
 
-There are rooms to the south, east, and west, but if you have a key now would be a good time to use it.
+There are rooms to the south, east, and west, but if you have a key now would bea good time to use it.
 %r2 -> %c2
 
 %c2
-Choices: go south/go east/go west/use key
+Choices: go-move-walk-travel-head south/go-move-walk-travel-head east/go-move-walk-travel-head west/use key
 Consequences: %r5/%r3/%r1/%r2.1
 %c2
 
 %r2.1
+#(if you have the key...)
 The door unlocks and you go right on through.
 %r2.1 -> %r10
 
 
 Room 3
 %r3
-Mossy. Very mossy. If this stuff wasn’t here, you would be dead where you stand seeing 
+Mossy. Very mossy. If this stuff wasn't here, you would be dead where you stand seeing 
 as though there are no openings for you to breathe. (s)Something glints in the greenery…(/s)
 %r3 -> %c3
 
 %c3
-Choices: go west/go south/check moss
+Choices: go-move-walk-travel-head west/go-move-walk-travel-head south/check moss-room
 Consequences: %r2/%r6/%r3.1
 %c3
 
@@ -63,32 +64,43 @@ The western and southern doors are still there.
 %r3.1.1 -> %c3.1.1
 
 %c3.1.1
-Choices: go-walk west/go-walk south
+Choices: go-move-walk-travel-head west/go-move-walk-travel-head south
 Consequences: %r2/%r6
 %c3.1.1
 
 
 Room 4
 %r4
-Well, a dungeon wouldn’t be complete without an unassuming pile of bones. 
-Here is said pile of bones. Something tells you not to sift around in the pile. 
+Well, a dungeon wouldn't be complete without an unassuming pile of bones. 
+Here is said pile of bones. Something tells you not to sift around in the pile.
+
+You can ignore me and sift around in the bones, or you can leave like a normal person.
 %r4 -> %c4
 
 %c4
-Choices: go east/go south/go north/sift through pile
+Choices: go-move-walk-travel-head east/go-move-walk-travel-head south/go-move-walk-travel-head north/sift through pile
 Consequences: %r5/%r7/%r1/%gameover2
 %c4
 
+
+Room 5 (After leaving the first time)
 %r5
-%r5 - %r5.1
+You see the remnants of what bound you in this room. Those remnants can go and jump off a cliff.
+Where will you go? (north/south/east/west)
+%r5 -> %c5
+
+%c5
+Choices: go-move-walk-travel-head north/go-move-walk-travel-head south/go-move-walk-travel-head east/go-move-walk-travel-head west
+Consequences: %r2/%r8/%r6/%r4
+%c5
 
 %gameover2
 Well aren’t you a rebel? A bone pokes through your stomach as soon as you dive into the bone pile, successfully impaling you. 
-What were you expecting, to swim around in a pile of degrading human remains? Well, you’ve now bled out. You have died.
+What were you expecting, to swim around in a pile of degrading human remains? Well, you’ve now bled out.
+You have died.
 %gameover2 -> %end
 
-
-Room 5.1
+Room 5.1 (Starting position)
 %r5.1
 You awake in a dungeon with nothing but rags on your cold, numb body. How
 cliché. What's not cliché is the fact that the ground beneath you is actually
@@ -100,7 +112,7 @@ somewhere, or stay here.
 %r5.1->%c5.1
 
 %c5.1
-Choices: remove stake/break chain/walk-move-go somewhere-north-south-east-west/stay here
+Choices: remove stake/break chain/go-move-walk-travel-head somewhere/stay here
 Consequences: %r5.1.1/%r5.1.2/%r5.1.3/%gameover
 %c5.1
 
@@ -111,7 +123,6 @@ balsa wood with a coat of silver paint over it. It was still wet. Your hands
 are stained with the essence of second place, but you're free to roam.
 (stop)
 %r5.1.1 -> %r5.2
-(Go to Room 5.2)
 
 - [Break chain] -
 %r5.1.2
@@ -119,15 +130,13 @@ You fail to break the chain. What? Did you think the thing was made of balsa woo
 invests in a chain.
 (stop)
 %r5.1.2 -> %c5
-(Remain here)
 
-- [Walk north/south/east/west] - 
+- [Walk somewhere] - 
 %r5.1.3
 You attempt to walk to the limits of the chain and stake. You accidentally walk too far and break the "metal stake" that was
 actually a piece of balsa wood with a coat of silver paint over it.
 (stop)
 %r5.1.3 -> %r5.2
-(Go to Room 5.2)
 
 - [Stay here/chained/attached/forever/until you die] - 
 %gameover
@@ -136,18 +145,17 @@ Turns out, nobody bothers to feed anyone
 down here in the dungeon. Go figure.
 (stop)
 %gameover -> %end
-(You Lose)
-
 
 Room 5.2
 %r5.2 
 Somehow your recklessness actually got you somewhere. 
-How protagonistic of you. It’s still too dark to see more than five feet in any direction. Where will you go?
+How protagonistic of you. It’s still too dark to see more than five feet in any direction.
+Will you go north, south, east, or west?
 %r5.2 -> %c5.2
 
 %c5.2
-Choices: go north/go south/go east/go west
-Consequences: %r2/%r8/%r4/%r6
+Choices: go-move-walk-travel-head north/go-move-walk-travel-head south/go-move-walk-travel-head east/go-move-walk-travel-head west
+Consequences: %r2/%r8/%r6/%r4
 %c5.2
 
 
@@ -162,12 +170,14 @@ Consequences: %gameover3/%r6.1
 %c6
 
 %gameover3
-You shall now assume your original position. Under the wall. You are crushed to death by the enormous girth of the stone wall.
+You shall now assume your original position, under the wall. You are crushed to death by the enormous girth of the stone wall.
 Don’t be so eager to give out your trust.
+You died.
 %gameover3 -> %end
 
 %r6.1
 Smart choice. The bricks seemed too organized to trust.
+(stop)
 %r6.1 -> %r6.2
 
 Room 6.2
@@ -177,7 +187,7 @@ Where do you wish to go (north, south, or west)?
 %r6.2 -> %c6.2
 
 %c6.2
-Choices: go-move-walk north/go-move-walk west/go-move-walk south
+Choices: go-move-walk-travel-head north/go-move-walk-travel-head west/go-move-walk-travel-head south
 Consequences: %r3/%r5/%r9
 %c6.2
 
@@ -187,73 +197,93 @@ Room 7
 There seems to be a dead adventurer here. His body is no more, but his equipment remains largely unscathed. 
 There is a copper sword and a set of leather armour.
 
+What do you desire to take, the armor, the sword, or both?
 %r7 -> %c7
 
 %c7
-Choices: take sword/take armor/take equipment-both
-Consequences: %r7.1/%r7.2/%r7.3
+Choices: take-the sword/take-the armor/take equipment-both/both
+Consequences: %r7.1/%r7.2/%r7.3/%r7.3
 %c7
 
 %r7.1
 You obtain the worst of all swords. Better than your fists. (get CopperSword)
-%r7.1
+Presented with the decision of where to go, you decide to go: (north or east)
+%r7.1 -> %c7.3
 
 %r7.2
 The armor needs refining, but it is more protection from the elements and from monsters. (Get LeatherArmour)
-%r7.2
+
+Presented with the decision of where to go, you decide to go: (north or east)
+%r7.2 -> %c7.3
 
 %r7.3
 You take the adventurer’s gear and go on about your business. (Get CopperSword and LeatherArmour)
-Presented with the decision of where to go, you decide to go? (north or east)
-#*If not obtained already* 
-#Have to implement some sort of check to see which equipment already in inventory before.
-#Applies to room 7.3, 7.2 and 7.1.
+
+Presented with the decision of where to go, you decide to go: (north or east)
 %r7.3 -> %c7.3
 
 %c7.3
-Choices: go-move-walk north/go-move-walk east
+Choices: go-move-walk-travel-head north/go-move-walk-travel-head east
 Consequences: %r4/%r8
 %c7.3
 
 
 Room 8
 %r8
-Ah, the south side. Ordinarily a disheveled mess, it seems rather clean. In any case, it’s so clean, you can take a good look 
-at yourself through that reflective bit over th… Oh. That’s a mirror. How… quaint. Will you take a look? 
+Ah, the south side. Ordinarily a disheveled mess, it seems rather clean.
+In any case, it's so clean, you can take a good look at yourself through
+that reflective bit over th... Oh. That’s a mirror. How... quaint.
+Will you take a look? 
 
 Look? Go north? East? West? The choice is yours.
 %r8 -> %c8
 
 %c8
-Choices: yes-sure/no/go-walk north/go-walk east/go-walk west
-Consequences: %r8.1/%r8.2/%r5.2/%r7/%r9
+Choices: yes-sure-look/no/go-move-walk-travel-head north/go-move-walk-travel-head east/go-move-walk-travel-head west
+Consequences: %r8.1/%r8.2/%r5.2/%r9/%r7
 %c8
 
 %r8.1
 You take a good look. The image is ingrained in your mind. Perhaps it will come in handy later.
-%r8.1 -> %c8
+
+So now where are you off to now? (north, west, or east)
+%r8.1 -> %c8.1
 
 %r8.2
 You resist the urge of narcissism and turn away.
-%r8.2 -> %c8
 
+So now where are you off to now? (north, west, or east)
+%r8.2 -> %c8.1
+
+%c8.1
+Choices: go-move-walk-travel-head north/go-move-walk-travel-head east/go-move-walk-travel-head west
+Consequences: %r5.2/%r9/%r7
+%c8.1
+
+
+Room 9
 %r9
-Room 9: 
 Nothing to see here. Unless if you count the rats. There are, in fact, rats. 
 Speaking of which, here comes one right n-- (sfx metalgear!) (battle %tutorial)
 #where did the dialogueCode go @JackSparrow
 #I believe there should be a captain in there somewhere
-%r9
+%r9 -> somewhere
 
+
+
+
+Room 10
 %r10
-Room 10: 
-You have entered a long hallway lit by nothing but candles. At the end of said hallway there is a very daunting looking knight. 
-Perhaps you should take some time to increase your vitality before engaging it. 
+You have entered a long hallway lit by nothing but candles. At the end of said
+hallway there is a very daunting looking knight. 
+Perhaps you should take some time to increase your vitality before engaging it.
+
+You can fight the knight, or just tuck your tail and run south.
 %r10 -> %c10
 
 %c10
-Choices: fight the knight/go north/go south
-Consequences: %r10.1/%r11/%r2
+Choices: fight/fight the knight/go-move-walk-travel-head-move north/go-move-walk-travel-head-run south
+Consequences: %r10.1/%r10.1/%r11/%r2
 %c10
 
 %r10.1
@@ -264,7 +294,7 @@ Are you sure about this? Moving north will engage the battle.
 # (if boolean !(knightiskill)) 
 Room 11: 
 The knight has you in its sights. Prepare for a fight. (battle %DungeonKnight)
-%r11
+%r11 -> somewhere
 
 %r11.2
 #(if boolean knightiskill)
