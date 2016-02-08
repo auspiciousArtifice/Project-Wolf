@@ -1,5 +1,5 @@
 // John D'Angelo
-// Period 4
+
 import java.util.*;
 import java.io.*;
 
@@ -12,20 +12,32 @@ public class equipment
 	
 	public equipment()
 	{
-		defence = 1;
-		attack = 1;
+		defence = 0;
+		attack = 0;
 		name = "Error";
 	}
-	public equipment(int def, int atk, String N){
-		defence = def;
+	public equipment(String N)
+	{
+		defence = 0;
+		attack = 0;
+		name = N;
+	}
+	public equipment(int atk, int def, String N){
 		attack = atk;
+		defence = def;
 		name = N;
 	}
 	
-	public int getDef(){
-		return defence;
+	public String getName(){
+		return name;
 	}
 	public int getAtk(){
 		return attack;
+	}
+	public int getDef(){
+		return defence;
+	}
+	public String toString(){
+		return attack + "#" + defence + "#" + name;
 	}
 }

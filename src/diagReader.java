@@ -1,7 +1,6 @@
-package wolfFiles;
-
 //Shamee Mahmud 
 //package wolfFiles;
+//what is eclipse
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,13 +14,13 @@ public class diagReader
 	static String currentChoice;
 	static String nextDialogue = "";
 	static String currentDialogue = "";
-	static String filename = "wolfFiles/" + playerSave.location[1];
+	static String filename = "wolfFiles/" + player.location[1];
 	static String currentInput = "";
 	
 	public static void main(String[] args) throws IOException, InterruptedException{}
 	
 	public static void dialogue(String DialogueCode) throws IOException, InterruptedException{
-		Helper.cls();
+		helper.cls();
 		Scanner kb = new Scanner(new File(filename));
 		String dialogue = "";
 		currentDialogue = DialogueCode;
@@ -60,7 +59,7 @@ public class diagReader
 						slowText = false;
 					} //slowText end recog
 					if(arr[i].contains("(pause")){
-						pause(Helper.asDouble(arr[i+1].substring(0, arr[i+1].indexOf(")"))));
+						pause(helper.asDouble(arr[i+1].substring(0, arr[i+1].indexOf(")"))));
 						arr[i] = "";
 						arr[i+1] = "";
 					} //pause command
@@ -71,9 +70,9 @@ public class diagReader
 						arr[i+1] = "";
 					} //get command
 					if(arr[i].contains("(stop)")){
-						playerSave.sc.nextLine();
+						player.sc.nextLine();
 						arr[i] = "";
-						//waits until the playerSave presses the enter key
+						//waits until the player presses the enter key
 					}
 					
 					if(arr[i].contains("(mTrack")){
@@ -110,14 +109,14 @@ public class diagReader
 			ChoiceHandler(nextDialogue);
 		}
 		else if(nextDialogue.startsWith("%r")){
-			playerSave.location[0] = nextDialogue;
-			System.out.println(playerSave.location[0]);//work plz
+			player.location[0] = nextDialogue;
+			System.out.println(player.location[0]);//work plz
 			dialogue(nextDialogue);
 			//todo RoomHandler, loads next Room/Text
 		}
 		else if(nextDialogue.startsWith("%end")){
-			playerSave.kill();
-			Helper.cls();
+			player.kill();
+			helper.cls();
 			projectWolf.menu();
 		}
 		else if(currentDialogue.equals(nextDialogue)){
@@ -145,9 +144,9 @@ public class diagReader
 				}
 			case "eat": currentInput = ""; break; 
 			//you're supposed to eat something from inventory, but it hasn't been implemented yet.
-			case "save": currentInput = ""; playerSave.saveGame(); break;
-			case "repeat": Helper.cls(); dialogue(currentDialogue); currentInput = ""; return;
-			case "clear": currentInput = ""; Helper.cls(); return; 
+			case "save": currentInput = ""; player.saveGame(); break;
+			case "repeat": helper.cls(); dialogue(currentDialogue); currentInput = ""; return;
+			case "clear": currentInput = ""; helper.cls(); return; 
 			default: currentInput = ""; break;
 			}
 		}
@@ -160,7 +159,7 @@ public class diagReader
 	public static void ChoiceHandler(String ChoiceCode) throws IOException, InterruptedException{
 		Scanner text = new Scanner(new File(filename));
 		
-		String input = playerSave.sc.nextLine(); //have to set to string, otherwise NPE occurs.		
+		String input = player.sc.nextLine(); //have to set to string, otherwise NPE occurs.		
 		MessageHandler(input.split("\\s+"));
 		
 		currentInput = currentInput.trim();
@@ -178,9 +177,9 @@ public class diagReader
 		}
 		
 		String strChoices = text.nextLine();
-		ArrayList<String> choices = Helper.asArrayList(strChoices.substring(strChoices.indexOf(" ") + 1).split("/"));
+		ArrayList<String> choices = helper.asArrayList(strChoices.substring(strChoices.indexOf(" ") + 1).split("/"));
 		String strConsequences = text.nextLine();
-		ArrayList<String> consequences = Helper.asArrayList(strConsequences.substring(strConsequences.indexOf(" ") + 1).split("/"));
+		ArrayList<String> consequences = helper.asArrayList(strConsequences.substring(strConsequences.indexOf(" ") + 1).split("/"));
 		
 		for(int i = 0; i < choices.size(); i++){
 			if(choices.get(i).contains("-")){
