@@ -11,7 +11,7 @@ public class playerSave
 	private static int health,defence,strength,wealth,invSize,xpAtk,xpDef;
 	private static double creed;
 	private static String saveName,name;
-	private static String[] location = new String[3];
+	static String[] location = new String[3];
 	//private equipment[] equipped;
 	static Scanner sc = new Scanner(System.in);
 	
