@@ -16,32 +16,68 @@ public class musicThread extends Application implements Runnable{
 	static MediaPlayer mediaPlayer;
 	static Media media;
 	static String songName;
+	static double volume = 1;
+	static boolean volumeChange = false;
+	static boolean trackChange = false;
 	
-	public void initialize(){
+	@Override
+	public void run() {
+		try{
 			launch();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			if(e.toString().contains("Unexpected exception")){ //interrupted
+				try {
+					stop();
+				} catch (InterruptedException e1) {}
+			}
+			else if(e.toString().contains("more than once")){ //changing music
+				try {
+					System.out.println("Volume= " + volumeChange + " track= " + trackChange);
+					if(trackChange){
+						trackChange = false;
+						resetDuration();
+						start(null);
+					}
+					else if(volumeChange){
+						volumeChange = false;
+						start(null);
+					}
+				} catch (InterruptedException e1) {}
+			}
+		}
 	}
 	
 	public musicThread(){} //this is here because Java will complain, great programming as always
 	
-	public musicThread(String s){
-		songName = s;
-	}
-	
 	@Override
-	public void start(Stage primaryStage){
+	public void start(Stage primaryStage) throws InterruptedException{
+			
 			//final Media media = new Media("http://inception.davepedu.com/inception.mp3");
 			//This is a http streaming media. We'll be testing with regular files for now.
+			trackChange = false;
+			volumeChange = false;
 			media = new Media(new File("src/audio/" + songName + ".mp3").toURI().toString());
 			mediaPlayer = new MediaPlayer(media);
 			System.out.println("kek");
-			mediaPlayer.setAutoPlay(true);
+			System.out.println(AudioController.audioDuration + " why whay ");
+			
+			
+			mediaPlayer.play();
+			mediaPlayer.pause();
+			Thread.sleep(1000);
+			mediaPlayer.seek(AudioController.audioDuration);
+			mediaPlayer.setVolume(volume);
+			mediaPlayer.play();
+
+
 			mediaPlayer.setOnEndOfMedia(new Runnable() {
 				@Override public void run() {
 					mediaPlayer.seek(Duration.ZERO);
 					//Platform.exit();
 				}
 			});
-
 			System.out.println("rofl");
 	}
 	
@@ -50,32 +86,30 @@ public class musicThread extends Application implements Runnable{
 			mediaPlayer.setVolume(mediaPlayer.getVolume()-.1);
 			Thread.sleep(250);
 		}
+		setDuration();
 		mediaPlayer.stop();
+		volume = 1;
 	}
 	
 	public void changeTrack(String s) throws InterruptedException{
 		songName = s;
-		stop();
-		start(null);
+		trackChange = true;
 	}
-
-	@Override
-	public void run() {
-		try{
-			initialize();
-		}
-		catch(Exception e){
-			e.printStackTrace();
-			if(e.toString().contains("Unexpected exception")){
-				try {
-					stop();
-				} catch (InterruptedException e1) {}
-			}
-			else if(e.toString().contains("more than once")){
-				start(null);
-			}
-		}
+	
+	public void changeVolume(double d) throws InterruptedException{
+		volume = d;
+		volumeChange = true;
 	}
+	
+	public void setDuration(){
+		System.out.println(mediaPlayer.getCurrentTime());
+		AudioController.audioDuration = mediaPlayer.getCurrentTime();
+	}
+	
+	public void resetDuration(){
+		AudioController.audioDuration = new Duration(0);
+	}
+	
 
 
 

@@ -79,17 +79,17 @@ public class diagReader
 						//some sort of implementation of track changing, called to MusicThread.
 						arr[i] = "";
 						arr[i+1] = "";
-					} //mTrack command
+					} 
 					if(arr[i].contains("(mVol")){
 						//some sort of implementation of volume adjustment, called to MusicThread.
 						arr[i] = "";
 						arr[i+1] = "";
-					} //mVol command
+					} 
 					if(arr[i].contains("(mAction")){
 						//some sort of implementation of music play/pause, called to MusicThread.
 						arr[i] = "";
 						arr[i+1] = "";
-					} //mAction command
+					} 
 					
 					if(slowText){
 						slowPrint(arr[i] + " ");
