@@ -30,7 +30,7 @@ public class musicThread extends Application implements Runnable{
 	@Override
 	public void start(Stage primaryStage){
 			//final Media media = new Media("http://inception.davepedu.com/inception.mp3");
-
+			//This is a http streaming media. We'll be testing with regular files for now.
 			media = new Media(new File("src/audio/" + songName + ".mp3").toURI().toString());
 			mediaPlayer = new MediaPlayer(media);
 			System.out.println("kek");
@@ -45,11 +45,15 @@ public class musicThread extends Application implements Runnable{
 			System.out.println("rofl");
 	}
 	
-	public void stop(){
+	public void stop() throws InterruptedException{
+		while(mediaPlayer.getVolume()>0){
+			mediaPlayer.setVolume(mediaPlayer.getVolume()-.1);
+			Thread.sleep(250);
+		}
 		mediaPlayer.stop();
 	}
 	
-	public void changeTrack(String s){
+	public void changeTrack(String s) throws InterruptedException{
 		songName = s;
 		stop();
 		start(null);
@@ -63,7 +67,9 @@ public class musicThread extends Application implements Runnable{
 		catch(Exception e){
 			e.printStackTrace();
 			if(e.toString().contains("Unexpected exception")){
-				stop();
+				try {
+					stop();
+				} catch (InterruptedException e1) {}
 			}
 			else if(e.toString().contains("more than once")){
 				start(null);
