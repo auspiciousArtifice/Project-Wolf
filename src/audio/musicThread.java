@@ -19,6 +19,7 @@ public class musicThread extends Application implements Runnable{
 	static double volume = 1;
 	static boolean volumeChange = false;
 	static boolean trackChange = false;
+	static boolean actionChange = false;
 	
 	@Override
 	public void run() {
@@ -44,6 +45,10 @@ public class musicThread extends Application implements Runnable{
 						volumeChange = false;
 						start(null);
 					}
+					else if(actionChange){
+						actionChange = false;
+						start(null);
+					}
 				} catch (InterruptedException e1) {}
 			}
 		}
@@ -58,6 +63,7 @@ public class musicThread extends Application implements Runnable{
 			//This is a http streaming media. We'll be testing with regular files for now.
 			trackChange = false;
 			volumeChange = false;
+			actionChange = false;
 			media = new Media(new File("src/audio/" + songName + ".mp3").toURI().toString());
 			mediaPlayer = new MediaPlayer(media);
 			System.out.println("kek");
@@ -99,6 +105,11 @@ public class musicThread extends Application implements Runnable{
 	public void changeVolume(double d) throws InterruptedException{
 		volume = d;
 		volumeChange = true;
+	}
+	
+	public void changeAction(String s){
+		if(s.equals("pause")) setDuration();
+		mediaPlayer.stop();
 	}
 	
 	public void setDuration(){
