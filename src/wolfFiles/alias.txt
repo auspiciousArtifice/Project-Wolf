@@ -1,0 +1,2 @@
+go: move/crawl/go/walk/travel/head
+investigate: sift/search/screen/investigate/rummage
