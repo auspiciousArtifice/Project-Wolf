@@ -1,7 +1,8 @@
-package music;
+package audio;
 
 import java.io.File;
 import java.net.URL;
+import java.util.Observable;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -13,12 +14,24 @@ import javafx.util.Duration;
 
 public class musicThread extends Application implements Runnable{
 	static MediaPlayer mediaPlayer;
-
+	static Media media;
+	static String songName;
+	
+	public void initialize(){
+			launch();
+	}
+	
+	public musicThread(){} //this is here because Java will complain, great programming as always
+	
+	public musicThread(String s){
+		songName = s;
+	}
+	
 	@Override
 	public void start(Stage primaryStage){
 			//final Media media = new Media("http://inception.davepedu.com/inception.mp3");
 
-			final Media media = new Media(new File("src/music/opening.mp3").toURI().toString());
+			media = new Media(new File("src/audio/" + songName + ".mp3").toURI().toString());
 			mediaPlayer = new MediaPlayer(media);
 			System.out.println("kek");
 			mediaPlayer.setAutoPlay(true);
@@ -31,15 +44,31 @@ public class musicThread extends Application implements Runnable{
 
 			System.out.println("rofl");
 	}
-
-	static void threadMessage(String message) {
-		String threadName = Thread.currentThread().getName();
-		System.out.format("%s: %s%n", threadName, message);
+	
+	public void stop(){
+		mediaPlayer.stop();
+	}
+	
+	public void changeTrack(String s){
+		songName = s;
+		stop();
+		start(null);
 	}
 
 	@Override
 	public void run() {
-		launch(null);
+		try{
+			initialize();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			if(e.toString().contains("Unexpected exception")){
+				stop();
+			}
+			else if(e.toString().contains("more than once")){
+				start(null);
+			}
+		}
 	}
 
 
