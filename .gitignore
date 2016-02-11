@@ -15,6 +15,7 @@
 /.settings
 Project-Wolf.iml
 .classpath
+*.save
 
 # Logs and databases #
 ######################
