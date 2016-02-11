@@ -14,7 +14,7 @@ public class diagReader
 	static String currentChoice;
 	static String nextDialogue = "";
 	static String currentDialogue = "";
-	static String filename = "wolfFiles/" + player.location[1];
+	static String filename = "src/wolfFiles/" + player.location[1];
 	static String currentInput = "";
 	
 	public static void main(String[] args) throws IOException, InterruptedException{}
@@ -176,6 +176,17 @@ public class diagReader
 			}
 		}
 		
+		String[] preconvert = currentInput.split("\\s+");
+		for(int i = 0; i < preconvert.length; i++){
+			preconvert[i] = aliases(preconvert[i]);
+		}
+		ArrayList<String> converted = helper.asArrayList(preconvert);
+		currentInput = "";
+		for(String s: converted){
+			currentInput += s + " ";
+		}
+		currentInput = currentInput.trim();
+		
 		String strChoices = text.nextLine();
 		ArrayList<String> choices = helper.asArrayList(strChoices.substring(strChoices.indexOf(" ") + 1).split("/"));
 		String strConsequences = text.nextLine();
@@ -209,7 +220,7 @@ public class diagReader
 		}
 		//System.out.println(choices.toString());
 		//System.out.println(consequences.toString());
-		//System.out.println(currentInput);
+		System.out.println(currentInput);
 		//System.out.println(currentChoice);
 		
 		for(String i: choices)
@@ -252,4 +263,22 @@ public class diagReader
 	public static void pause(double amount) throws InterruptedException{
 		Thread.sleep((long)amount * 1000);
 	}
+	
+	public static String aliases(String in) throws FileNotFoundException{
+		File alias = new File("src/wolfFiles/alias.txt");
+		Scanner fs = new Scanner(alias);
+		while(fs.hasNextLine()){
+			String line = fs.nextLine();
+			if(line.contains(in)){
+				return line.substring(0, line.indexOf(":"));
+			}
+		}
+		return in;
+	}
+	
+	
+	
+	
+	
+	
 }

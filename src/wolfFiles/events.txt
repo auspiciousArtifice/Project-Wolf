@@ -112,7 +112,7 @@ somewhere, or stay here.
 %r5.1->%c5.1
 
 %c5.1
-Choices: remove stake/break chain/go-move-walk-travel-head somewhere/stay here
+Choices: remove stake/break chain/go somewhere/stay here
 Consequences: %r5.1.1/%r5.1.2/%r5.1.3/%gameover
 %c5.1
 
