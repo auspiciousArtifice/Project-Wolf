@@ -23,7 +23,7 @@ public class player
 		saveName = sc.nextLine() + ".sav";
 		
 		File save = null;
-		File f = new File("src/wolfFiles/saves");
+		File f = new File("src/wolfFiles/saves/");
 		ArrayList<String> files = new ArrayList<>(Arrays.asList(f.list()));
 		
 		if(files.contains(saveName)){
@@ -35,7 +35,7 @@ public class player
 			System.out.println("\nWhat is your player name?");
 			name = sc.nextLine();
 			
-			save = new File("src/wolfFiles/saves" + saveName);
+			save = new File("src/wolfFiles/saves/" + saveName);
 			save.createNewFile();
 		}
 		
@@ -49,7 +49,7 @@ public class player
 		xpDef = 0;							//dmgTaken/4 * creed/10(int)	always at least 1
 		inventory = new ArrayList<equipment>();
 		inventory.add(new equipment(0,0,"Empty"));
-		FileWriter fw = new FileWriter("src/wolfFiles/saves" + saveName);
+		FileWriter fw = new FileWriter("src/wolfFiles/saves/" + saveName);
 		String line = System.lineSeparator();
 		
 		fw.write("" + name);
@@ -80,7 +80,7 @@ public class player
 	
 	public static void loadSave() throws IOException, InterruptedException		//Load from an old .sav file
 	{
-		File f = new File("src/wolfFiles/saves");
+		File f = new File("src/wolfFiles/saves/");
 		ArrayList<String> files = new ArrayList<String>(Arrays.asList(f.list()));
 		if(files.size() == 0){
 			System.out.println("Error: No files in this folder.");
@@ -93,7 +93,7 @@ public class player
 		saveName = sc.nextLine() + ".sav";
 		
 		if(files.contains(saveName)){
-			File save = new File("src/wolfFiles/saves" + saveName);
+			File save = new File("src/wolfFiles/saves/" + saveName);
 			Scanner fr = new Scanner(save);
 			
 			name = fr.nextLine();
@@ -122,12 +122,12 @@ public class player
 	
 	public static void saveGame() throws IOException, InterruptedException
 	{
-		File temp = new File("src/wolfFiles/saves" + saveName);
+		File temp = new File("src/wolfFiles/saves/" + saveName);
 		temp.delete();
-		File save = new File("src/wolfFiles/saves" + saveName);
+		File save = new File("src/wolfFiles/saves/" + saveName);
 		save.createNewFile();
 		
-		FileWriter fw = new FileWriter("src/wolfFiles/saves" + saveName);
+		FileWriter fw = new FileWriter("src/wolfFiles/saves/" + saveName);
 		String line = System.lineSeparator();
 		
 		fw.write("" + name);
@@ -152,7 +152,7 @@ public class player
 	}
 	
 	public static void kill(){
-		File you = new File("src/wolfFiles/saves" + saveName);
+		File you = new File("src/wolfFiles/saves/" + saveName);
 		you.delete();
 	}
 }
