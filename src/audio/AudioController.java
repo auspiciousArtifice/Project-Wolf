@@ -6,36 +6,50 @@ import javafx.util.Duration;
 public class AudioController {
 	
 	public static Duration audioDuration;
-
-	public static void main(String[] args) throws InterruptedException {
-		/*musicThread kek = new musicThread("cena");
-		Thread t = new Thread(kek);
-		t.setDaemon(true);
-		t.start();
-		Thread.sleep(5000);
-		t.interrupt();*/
-		//Thread.sleep(5000);
-		//kek.changeTrack("besaid");
-		musicThread kek = new musicThread();
-		kek.changeTrack("cena");
-		Thread t = new Thread(kek);
-		t.start();
-		Thread.sleep(5000);
-		t.interrupt();
-		t.join();
-		System.out.println("fhdsfs" + audioDuration.toString());
-		//kek.changeTrack("besaid");
-		kek.changeVolume(1);
-		t = new Thread(kek);
-		t.start();
-		while(true){
-			System.out.print("stop");
+	public static musicThread m = new musicThread();
+	public static Thread t = new Thread(m);
+	
+	public static void main(String[] args) throws InterruptedException {}
+	
+	
+	public static void changeTrack(String s) throws InterruptedException{
+		if(t.isAlive()){
+			t.interrupt();
+			t.join();
 			Thread.sleep(1000);
 		}
-		//new SFX("cena");
+		m.changeTrack(s);
+		t = new Thread(m);
+		t.start();
 	}
 	
-	public void changeTrack(){
-		
+	public static void changeVolume(String s) throws InterruptedException{
+		if(t.isAlive()){
+			t.interrupt();
+			t.join();
+			Thread.sleep(1000);
+		}
+		m.changeVolume(asDouble(s));
+		t = new Thread(m);
+		t.start();
+	}
+	
+	public static void changeAction(String s) throws InterruptedException{
+		if(t.isAlive()){
+			t.interrupt();
+			t.join();
+			Thread.sleep(1000);
+		}
+		m.changeAction(s);
+		t = new Thread(m);
+		t.start();
+	}
+	
+	public void SFX(String s){
+		new SFX(s);
+	}
+	
+	static double asDouble(String s){
+		return Double.parseDouble(s);
 	}
 }

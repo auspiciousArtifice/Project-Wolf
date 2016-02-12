@@ -7,6 +7,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
+
+import audio.AudioController;
+
 import java.util.ArrayList;
 
 public class diagReader
@@ -16,8 +19,11 @@ public class diagReader
 	static String currentDialogue = "";
 	static String filename = "src/wolfFiles/" + player.location[1];
 	static String currentInput = "";
+	static AudioController ac;
 	
-	public static void main(String[] args) throws IOException, InterruptedException{}
+	public static void main(String[] args) throws IOException, InterruptedException{
+		ac = new AudioController();
+	}
 	
 	public static void dialogue(String DialogueCode) throws IOException, InterruptedException{
 		helper.cls();
@@ -77,16 +83,20 @@ public class diagReader
 					
 					if(arr[i].contains("(mTrack")){
 						//some sort of implementation of track changing, called to MusicThread.
+						String arg = arr[i+1].substring(0, arr[i+1].indexOf(")"));
+						ac.changeTrack(arg);
 						arr[i] = "";
 						arr[i+1] = "";
 					} 
 					if(arr[i].contains("(mVol")){
-						//some sort of implementation of volume adjustment, called to MusicThread.
+						String arg = arr[i+1].substring(0, arr[i+1].indexOf(")"));
+						ac.changeVolume(arg);
 						arr[i] = "";
 						arr[i+1] = "";
 					} 
 					if(arr[i].contains("(mAction")){
-						//some sort of implementation of music play/pause, called to MusicThread.
+						String arg = arr[i+1].substring(0, arr[i+1].indexOf(")"));
+						ac.changeAction(arg);
 						arr[i] = "";
 						arr[i+1] = "";
 					} 
@@ -220,7 +230,7 @@ public class diagReader
 		}
 		//System.out.println(choices.toString());
 		//System.out.println(consequences.toString());
-		System.out.println(currentInput);
+		//System.out.println(currentInput);
 		//System.out.println(currentChoice);
 		
 		for(String i: choices)

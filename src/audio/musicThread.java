@@ -27,7 +27,7 @@ public class musicThread extends Application implements Runnable{
 			launch();
 		}
 		catch(Exception e){
-			e.printStackTrace();
+			//e.printStackTrace();
 			if(e.toString().contains("Unexpected exception")){ //interrupted
 				try {
 					stop();
@@ -35,7 +35,7 @@ public class musicThread extends Application implements Runnable{
 			}
 			else if(e.toString().contains("more than once")){ //changing music
 				try {
-					System.out.println("Volume= " + volumeChange + " track= " + trackChange);
+					//System.out.println("Volume= " + volumeChange + " track= " + trackChange);
 					if(trackChange){
 						trackChange = false;
 						resetDuration();
@@ -66,8 +66,8 @@ public class musicThread extends Application implements Runnable{
 			actionChange = false;
 			media = new Media(new File("src/audio/" + songName + ".mp3").toURI().toString());
 			mediaPlayer = new MediaPlayer(media);
-			System.out.println("kek");
-			System.out.println(AudioController.audioDuration + " why whay ");
+			//System.out.println("kek");
+			//System.out.println(AudioController.audioDuration + " why whay ");
 			
 			
 			mediaPlayer.play();
@@ -84,7 +84,7 @@ public class musicThread extends Application implements Runnable{
 					//Platform.exit();
 				}
 			});
-			System.out.println("rofl");
+			//System.out.println("rofl");
 	}
 	
 	public void stop() throws InterruptedException{
@@ -113,7 +113,7 @@ public class musicThread extends Application implements Runnable{
 	}
 	
 	public void setDuration(){
-		System.out.println(mediaPlayer.getCurrentTime());
+		//System.out.println(mediaPlayer.getCurrentTime());
 		AudioController.audioDuration = mediaPlayer.getCurrentTime();
 	}
 	
